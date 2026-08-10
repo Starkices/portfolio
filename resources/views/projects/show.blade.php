@@ -1,16 +1,18 @@
 <h1>{{ $project->title }}</h1>
 
 <p>{{ $project->summary }}</p>
-
+    @if($project->tech_stack)
+        <div class="mt-4 flex flex-wrap gap-2">
+            @foreach($project->tech_stack as $tech)
+                <span class="rounded border border-ink-border px-2 py-0.5 font-mono text-xs text-zinc-400">{{ $tech }}.</span>
+            @endforeach
+        </div>
+    @endif
 <div>
     {!! nl2br(e($project->description)) !!}
 </div>
 
-<p>
-    <strong>Technologies:</strong>
-    {{ //fetch the technologies array associated with the project and display them as a comma-separated list
-    implode(', ', $project->tech_stack->pluck('name')->toArray()) }}
-</p>
+
 
 @if ($project->live_url)
     <a href="{{ $project->live_url }}" target="_blank">

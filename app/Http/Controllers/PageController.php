@@ -30,9 +30,4 @@ class PageController extends Controller
             'skills' => $skills,
         ]);
     }
-
-    public function contact(): View
-    {
-        return view(' contact');
-    }
 }
