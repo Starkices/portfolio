@@ -12,7 +12,7 @@ return [
 
     'title' => 'PHP / Laravel Developer',
 
-    'tagline' => 'Building practical real-world software and growing toward STARKICES.',
+    'tagline' => 'Building practical real-world software. One step at a time.',
 
     'location' => 'Delta State, Nigeria',
 
