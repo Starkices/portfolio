@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Wisdom Ogheneobrozie — Laravel Developer')
+@section('title',  config('portfolio.name') . ' — ' . config('portfolio.title'))
 
 @section('content')
 
 <section class="mx-auto max-w-5xl px-6 pb-20 pt-24">
-    <p class="font-mono text-sm text-amber">Hi, I'm</p>
+    <p class="font-mono text-sm text-amber-400">{{ config('portfolio.company') }} / SOFTWARE DEVELOPMENT</p>
     <h1 class="mt-3 font-mono text-4xl font-bold tracking-tight text-white sm:text-6xl">
-        Wisdom Ogheneobrozie
+        {{config('portfolio.name')}}
     </h1>
     <p class="mt-6 max-w-2xl text-lg text-zinc-300">
-        A self-taught Laravel &amp; PHP developer from Delta State, Nigeria, building toward
-        <span class="text-white">STARKICES</span> — a software company built on solving real problems, not chasing attention.
+        {{config('portfolio.description')}}<br
+        <span class="text-white">{{config('portfolio.company')}}</span> — {{ config('portfolio.company_description') }}
     </p>
 
     <div class="mt-8 flex flex-wrap gap-4">

@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Wisdom Ogheneobrozie — Laravel Developer')</title>
-    <meta name="description" content="PHP/Laravel developer building practical web applications with PHP and Laravel, while developing expertise in cybersecurity.">
+    <title>@yield('title', config('portfolio.name') . ' — ' . config('portfolio.title'))</title>
+    <meta name="description" content="@yield('description', config('portfolio.description'))">
+    
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

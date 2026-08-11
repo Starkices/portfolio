@@ -47,8 +47,8 @@
         <p>Prefer email or social? Reach me directly:</p>
         <div class="mt-3 flex gap-6">
             <a href="mailto:info.starkices@gmail.com" class="text-amber hover:underline">Email</a>
-            <a href="https://github.com/Starkices" target="_blank" rel="noopener" class="text-amber hover:underline">GitHub</a>
-            <a href="https://linkedin.com/in/wisdom-ogheneobrozie" target="_blank" rel="noopener" class="text-amber hover:underline">LinkedIn</a>
+            <a href="{{config('portfolio.github')}}" target="_blank" rel="noopener" class="text-amber hover:underline">GitHub</a>
+            <a href="{{config('portfolio.linkedin')}}" target="_blank" rel="noopener" class="text-amber hover:underline">LinkedIn</a>
         </div>
     </div>
 </section>

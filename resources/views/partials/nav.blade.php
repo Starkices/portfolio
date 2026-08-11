@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-5xl px-6">
         <div class="flex h-16 items-center justify-between">
             <a href="{{ route('home') }}" class="font-mono text-sm font-semibold tracking-tight text-white">
-                wisdom<span class="text-amber">.</span>dev
+                <img src="{{ asset('media/icon.png') }}" alt="STARKICES Logo" class="inline h-12 w-12 rounded-full align-middle">
             </a>
 
             <nav class="hidden items-center gap-8 md:flex">
