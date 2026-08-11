@@ -54,7 +54,7 @@ return [
     */
 
     'description' =>
-        'PHP/Laravel developer building practical web applications with PHP and Laravel, while developing expertise in cybersecurity.',
+        'Junior Web developer building practical web applications with PHP and Laravel, while developing expertise in cybersecurity.',
 
     'keywords' => [
         'Wisdom Ogheneobrozie',

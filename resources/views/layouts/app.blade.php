@@ -6,7 +6,7 @@
     <title>@yield('title', config('portfolio.name') . ' — ' . config('portfolio.title'))</title>
     <meta name="description" content="@yield('description', config('portfolio.description'))">
     
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('mastericon.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
