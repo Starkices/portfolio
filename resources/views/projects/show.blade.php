@@ -7,14 +7,42 @@
 @section('content')
 
     <article>
+        @php
+            $status = strtolower($project->status ?? 'unknown');
 
+            switch ($status) {
+                case 'completed':
+                case 'live':
+                    $textClass = 'text-teal';
+                    $dotClass = 'bg-teal';
+                    break;
+                case 'in progress':
+                case 'in-progress':
+                    $textClass = 'text-amber';
+                    $dotClass = 'bg-amber';
+                    break;
+                case 'paused':
+                case 'on hold':
+                    $textClass = 'text-yellow-400';
+                    $dotClass = 'bg-yellow-400';
+                    break;
+                case 'cancelled':
+                case 'archived':
+                    $textClass = 'text-red-400';
+                    $dotClass = 'bg-red-400';
+                    break;
+                default:
+                    $textClass = 'text-white/50';
+                    $dotClass = 'bg-white/30';
+            }
+        @endphp
         {{-- Project Header --}}
         <section class="relative overflow-hidden border-b border-ink-border">
 
             {{-- Ambient glow --}}
             <div
                 aria-hidden="true"
-                class="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-amber/5 blur-[120px]"
+                class="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-amber/15 blur-[120px]"
             ></div>
 
             <div class="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
@@ -37,35 +65,6 @@
 
                 {{-- Status --}}
                 <div class="mt-12">
-                    @php
-                            $status = strtolower($project->status ?? 'unknown');
-
-                            switch ($status) {
-                                case 'completed':
-                                case 'live':
-                                    $textClass = 'text-teal';
-                                    $dotClass = 'bg-teal';
-                                    break;
-                                case 'in progress':
-                                case 'in-progress':
-                                    $textClass = 'text-amber';
-                                    $dotClass = 'bg-amber';
-                                    break;
-                                case 'paused':
-                                case 'on hold':
-                                    $textClass = 'text-yellow-400';
-                                    $dotClass = 'bg-yellow-400';
-                                    break;
-                                case 'cancelled':
-                                case 'archived':
-                                    $textClass = 'text-red-400';
-                                    $dotClass = 'bg-red-400';
-                                    break;
-                                default:
-                                    $textClass = 'text-white/50';
-                                    $dotClass = 'bg-white/30';
-                            }
-                        @endphp
 
                     <span
                         class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-ink-surface px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-wider text-white/50"

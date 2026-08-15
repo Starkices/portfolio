@@ -17,7 +17,7 @@
     @stack('head')
 </head>
 <body class="bg-ink font-sans text-white antialiased">
-
+    
     @include('partials.nav')
 
     <main>
