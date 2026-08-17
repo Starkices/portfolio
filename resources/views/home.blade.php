@@ -345,7 +345,7 @@
 
                 <div class="bg-slate-950 p-8">
                     <h3 class="text-lg font-semibold text-white">
-                        Business Systems
+                        Real-World Systems
                     </h3>
 
                     <p class="mt-3 leading-7 text-slate-400">

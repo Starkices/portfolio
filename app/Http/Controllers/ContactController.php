@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use App\Mail\ContactMessageReceived;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
@@ -53,14 +54,31 @@ class ContactController extends Controller
             'status' => 'unread',
         ]);
 
-        Mail::to(config('portfolio.contact_email'))
-            ->send(new ContactMessageReceived($contactMessage));
+        try {
+            Mail::to(config('portfolio.contact_email'))
+                ->send(new ContactMessageReceived($contactMessage));
 
-        return redirect()
-            ->route('contact.create')
-            ->with(
-                'status',
-                'Message received. I’ll get back to you as soon as possible.'
-            );
+            return redirect()
+                ->route('contact.create')
+                ->with(
+                    'status',
+                    "Thanks — your message has been sent successfully. I'll get back to you soon."
+                );
+
+        } catch (\Throwable $exception) {
+
+            Log::error('Portfolio contact email failed.', [
+                'contact_message_id' => $contactMessage->id,
+                'sender_email' => $contactMessage->email,
+                'exception' => $exception->getMessage(),
+            ]);
+
+            return redirect()
+                ->route('contact.create')
+                ->with(
+                    'error',
+                    "Your message was received, but I couldn't send the notification right now. Please try again later or contact me directly by email."
+                );
+        }
+        }
     }
-}
