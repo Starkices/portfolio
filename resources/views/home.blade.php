@@ -390,7 +390,8 @@
                         'Git',
                         'GitHub',
                         'Blade',
-                        'Cybersecurity'
+                        'Cybersecurity',
+                        '+5 more',
                     ] as $technology)
 
                         <span class="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">

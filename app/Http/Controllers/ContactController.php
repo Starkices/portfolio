@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\ContactMessage;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
+use App\Mail\ContactMessageReceived;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -14,18 +18,49 @@ class ContactController extends Controller
         return view('contact');
     }
 
-    public function store(Request $request): RedirectResponse
-    {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'message' => ['required', 'string', 'max:2000'],
+    public function store(
+        StoreContactMessageRequest $request
+    ): RedirectResponse {
+        $key = 'contact-form:' . Str::lower(
+            $request->string('email')->toString()
+        ) . '|' . $request->ip();
+
+        $allowed = RateLimiter::attempt(
+            $key,
+            3,
+            fn () => true,
+            300
+        );
+
+        if (! $allowed) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'form' =>
+                        'Too many messages have been sent from this address. Please try again later.',
+                ]);
+        }
+
+        $validated = $request->validated();
+
+        $contactMessage = ContactMessage::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'subject' => $validated['subject'],
+            'message' => $validated['message'],
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'status' => 'unread',
         ]);
 
-        ContactMessage::create($validated);
+        Mail::to(config('portfolio.contact_email'))
+            ->send(new ContactMessageReceived($contactMessage));
 
         return redirect()
             ->route('contact.create')
-            ->with('status', "Thanks — your message has been sent. I'll get back to you soon.");
+            ->with(
+                'status',
+                'Message received. I’ll get back to you as soon as possible.'
+            );
     }
 }

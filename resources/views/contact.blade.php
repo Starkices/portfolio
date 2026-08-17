@@ -1,56 +1,285 @@
 @extends('layouts.app')
 
-@section('title', 'Contact — Wisdom Ogheneobrozie')
+@section('title', 'Contact — ' . config('portfolio.company'))
+
+@section('description', 'Get in touch with ' . config('portfolio.name') . ' about software projects, development opportunities, and collaborations.')
 
 @section('content')
 
-<section class="mx-auto max-w-2xl px-6 py-20">
-    <h1 class="font-mono text-3xl font-bold text-white">Get in touch</h1>
-    <p class="mt-3 text-zinc-400">Have a project, an opportunity, or just want to say hi? Send a message.</p>
+<section class="relative overflow-hidden border-b border-ink-border">
 
-    @if(session('status'))
-        <div class="mt-6 rounded-md border border-teal bg-teal/10 px-4 py-3 text-sm text-teal">
-            {{ session('status') }}
-        </div>
-    @endif
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-amber/5 blur-[120px]"
+    ></div>
 
-    <form action="{{ route('contact.store') }}" method="POST" class="mt-8 space-y-5">
-        @csrf
+    <div class="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
 
-        <div>
-            <label for="name" class="block text-sm text-zinc-300">Name</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}"
-                class="mt-2 w-full rounded-md border border-ink-border bg-ink-surface px-4 py-2.5 text-white placeholder-zinc-500 focus:border-amber focus:outline-none">
-            @error('name') <p class="mt-1 text-xs text-red-400">{{ $message }}</p> @enderror
-        </div>
+        <div class="max-w-3xl">
 
-        <div>
-            <label for="email" class="block text-sm text-zinc-300">Email</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}"
-                class="mt-2 w-full rounded-md border border-ink-border bg-ink-surface px-4 py-2.5 text-white placeholder-zinc-500 focus:border-amber focus:outline-none">
-            @error('email') <p class="mt-1 text-xs text-red-400">{{ $message }}</p> @enderror
-        </div>
+            <div class="mb-6 flex items-center gap-3">
+                <span class="h-px w-8 bg-amber"></span>
 
-        <div>
-            <label for="message" class="block text-sm text-zinc-300">Message</label>
-            <textarea name="message" id="message" rows="5"
-                class="mt-2 w-full rounded-md border border-ink-border bg-ink-surface px-4 py-2.5 text-white placeholder-zinc-500 focus:border-amber focus:outline-none">{{ old('message') }}</textarea>
-            @error('message') <p class="mt-1 text-xs text-red-400">{{ $message }}</p> @enderror
+                <span class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-amber">
+                    Contact
+                </span>
+            </div>
+
+            <h1 class="text-5xl font-extrabold tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+                Let's build something
+                <span class="text-white/30">worth shipping.</span>
+            </h1>
+
+            <p class="mt-7 max-w-2xl text-base leading-8 text-white/50 sm:text-lg">
+                Have a project, opportunity, collaboration, or idea?
+                Send a message and let's start the conversation.
+            </p>
+
         </div>
 
-        <button type="submit" class="rounded-md bg-amber px-6 py-2.5 text-sm font-semibold text-ink transition-opacity hover:opacity-90">
-            Send message
-        </button>
-    </form>
-
-    <div class="mt-12 border-t border-ink-border pt-8 text-sm text-zinc-400">
-        <p>Prefer email or social? Reach me directly:</p>
-        <div class="mt-3 flex gap-6">
-            <a href="mailto:info.starkices@gmail.com" class="text-amber hover:underline">Email</a>
-            <a href="{{config('portfolio.github')}}" target="_blank" rel="noopener" class="text-amber hover:underline">GitHub</a>
-            <a href="{{config('portfolio.linkedin')}}" target="_blank" rel="noopener" class="text-amber hover:underline">LinkedIn</a>
-        </div>
     </div>
+</section>
+
+
+<section class="py-20 sm:py-28">
+
+    <div class="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1fr_360px] lg:px-8">
+
+        {{-- Form --}}
+        <div class="max-w-2xl">
+
+            @if(session('status'))
+                <div
+                    class="mb-8 rounded-xl border border-teal/20 bg-teal/5 p-5"
+                    role="status"
+                >
+                    <p class="text-sm font-medium text-teal">
+                        {{ session('status') }}
+                    </p>
+                </div>
+            @endif
+
+
+            @if($errors->has('form'))
+                <div
+                    class="mb-8 rounded-xl border border-red-400/20 bg-red-400/5 p-5"
+                    role="alert"
+                >
+                    <p class="text-sm font-medium text-red-300">
+                        {{ $errors->first('form') }}
+                    </p>
+                </div>
+            @endif
+
+
+            <form
+                action="{{ route('contact.store') }}"
+                method="POST"
+                class="space-y-7"
+            >
+                @csrf
+
+                {{-- Honeypot --}}
+                <div
+                    aria-hidden="true"
+                    class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+                >
+                    <label for="website">Website</label>
+
+                    <input
+                        type="text"
+                        name="website"
+                        id="website"
+                        tabindex="-1"
+                        autocomplete="off"
+                    >
+                </div>
+
+
+                {{-- Name --}}
+                <div>
+                    <label
+                        for="name"
+                        class="font-mono text-xs font-semibold uppercase tracking-wider text-white/50"
+                    >
+                        Your name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="{{ old('name') }}"
+                        autocomplete="name"
+                        required
+                        class="mt-3 w-full rounded-xl border border-ink-border bg-ink-surface px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-amber"
+                        placeholder="John Doe"
+                    >
+
+                    @error('name')
+                        <p class="mt-2 text-xs text-red-300">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+
+                {{-- Email --}}
+                <div>
+                    <label
+                        for="email"
+                        class="font-mono text-xs font-semibold uppercase tracking-wider text-white/50"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        autocomplete="email"
+                        required
+                        class="mt-3 w-full rounded-xl border border-ink-border bg-ink-surface px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-amber"
+                        placeholder="you@example.com"
+                    >
+
+                    @error('email')
+                        <p class="mt-2 text-xs text-red-300">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+
+                {{-- Subject --}}
+                <div>
+                    <label
+                        for="subject"
+                        class="font-mono text-xs font-semibold uppercase tracking-wider text-white/50"
+                    >
+                        Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value="{{ old('subject') }}"
+                        required
+                        class="mt-3 w-full rounded-xl border border-ink-border bg-ink-surface px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/20 focus:border-amber"
+                        placeholder="Project inquiry"
+                    >
+
+                    @error('subject')
+                        <p class="mt-2 text-xs text-red-300">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+
+                {{-- Message --}}
+                <div>
+                    <label
+                        for="message"
+                        class="font-mono text-xs font-semibold uppercase tracking-wider text-white/50"
+                    >
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="7"
+                        required
+                        class="mt-3 w-full resize-y rounded-xl border border-ink-border bg-ink-surface px-4 py-3.5 text-sm leading-7 text-white outline-none transition placeholder:text-white/20 focus:border-amber"
+                        placeholder="Tell me about your project, idea, or opportunity..."
+                    >{{ old('message') }}</textarea>
+
+                    @error('message')
+                        <p class="mt-2 text-xs text-red-300">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+
+                {{-- Submit --}}
+                <button
+                    type="submit"
+                    class="inline-flex items-center gap-3 rounded-lg bg-amber px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink transition hover:-translate-y-0.5 hover:bg-amber/90"
+                >
+                    Send message
+
+                    <span aria-hidden="true">↗</span>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        {{-- Contact information --}}
+        <aside class="lg:border-l lg:border-ink-border lg:pl-12">
+
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-amber">
+                Direct contact
+            </p>
+
+            <div class="mt-8 space-y-8">
+
+                <div>
+                    <p class="font-mono text-[10px] uppercase tracking-wider text-white/25">
+                        Email
+                    </p>
+
+                    <a
+                        href="mailto:{{ config('portfolio.contact_email') }}"
+                        class="mt-2 block break-all text-sm text-white/70 transition hover:text-amber"
+                    >
+                        {{ config('portfolio.contact_email') }} <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+
+
+                <div>
+                    <p class="font-mono text-[10px] uppercase tracking-wider text-white/25">
+                        GitHub
+                    </p>
+
+                    <a
+                        href="{{ config('portfolio.github') }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="mt-2 block text-sm text-white/70 transition hover:text-amber"
+                    >
+                        {{ config('portfolio.company') }} <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+
+
+                <div>
+                    <p class="font-mono text-[10px] uppercase tracking-wider text-white/25">
+                        LinkedIn
+                    </p>
+
+                    <a
+                        href="{{ config('portfolio.linkedin') }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="mt-2 block text-sm text-white/70 transition hover:text-amber"
+                    >
+                        {{ config('portfolio.name') }} <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
 </section>
 
 @endsection

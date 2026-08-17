@@ -12,7 +12,7 @@ return [
 
     'title' => 'PHP / Laravel Developer',
 
-    'tagline' => 'Building practical real-world software. One step at a time.',
+    'tagline' => 'Building practical reliable software. Step-by-Step.',
 
     'location' => 'Delta State, Nigeria',
 
@@ -22,7 +22,9 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'email' => 'info.starkices@gmail.com',
+    'email' => 'wisdomoghe@gmail.com',
+    
+    'contact_email' => 'info.starkices@gmail.com',
 
     'phone' => '+2348085442286',
 
@@ -54,7 +56,7 @@ return [
     */
 
     'description' =>
-        'Junior Web developer building practical web applications with PHP and Laravel, while developing expertise in cybersecurity.',
+        'Junior Web developer building practical reliable web applications with PHP and Laravel, while developing expertise in cybersecurity.',
 
     'keywords' => [
         'Wisdom Ogheneobrozie',
@@ -66,5 +68,10 @@ return [
         'Junior Web Developer',
         'Software Developer',
     ],
-
+    /*
+    |--------------------------------------------------------------------------
+    | pagination
+    |--------------------------------------------------------------------------
+    */
+    'no.per_page' => '1',
 ];

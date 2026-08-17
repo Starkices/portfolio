@@ -11,5 +11,8 @@ class ContactMessage extends Model
         'email',
         'subject',
         'message',
+        'ip_address',
+        'user_agent',
+        'status',
     ];
 }
