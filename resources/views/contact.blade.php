@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Contact — Wisdom Ogheneobrozie')
+@section('title', 'Contact — ' . config('portfolio.company'))
+
+@section(
+    'description',
+    'Contact ' . config('portfolio.name') . ' about software projects, development opportunities, collaborations, and ideas.'
+)
 
 @section('content')
 

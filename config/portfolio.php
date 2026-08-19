@@ -47,7 +47,7 @@ return [
     'company' => 'STARKICES',
 
     'company_description' =>
-        'STARKICES is the long-term software development company I am building - a software company built on solving real problems, not chasing attention.',
+        'STARKICES is the long-term vision behind the work I am building today — a software development company focused on creating useful technology, solving difficult problems, and growing from individual projects into larger systems.',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,5 +73,11 @@ return [
     | pagination
     |--------------------------------------------------------------------------
     */
-    'no.per_page' => '1',
+    'site_url' => env('APP_URL', 'http://portfolio.test'),
+
+    'og_image' => 'media/icon.png',
+
+    'locale' => 'en_NG',
+
+    'robots' => 'index, follow',
 ];

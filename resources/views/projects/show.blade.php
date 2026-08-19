@@ -4,6 +4,12 @@
 
 @section('description', $project->summary)
 
+@section('og_type', 'article')
+
+@section('og_title', $project->title . ' — ' . config('portfolio.company'))
+
+@section('og_description', $project->summary)
+
 @section('content')
 
     <article>
