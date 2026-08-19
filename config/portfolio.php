@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'name' => 'Wisdom Ogheneobrozie',
+    'name' => 'Oghenemaro Wisdom Ogheneobrozie',
 
     'title' => 'PHP / Laravel Developer',
 

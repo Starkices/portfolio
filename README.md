@@ -1,6 +1,6 @@
 # STARKICES Portfolio
 
-> Personal developer portfolio of **Wisdom Ogheneobrozie** — PHP / Laravel Developer and builder of STARKICES.
+> Personal developer portfolio of **Oghenemaro Ogheneobrozie** — Junior Web developer building practical reliable web applications with PHP and Laravel, while developing expertise in cybersecurity.
 
 [![Laravel](https://img.shields.io/badge/Laravel-13.x-FF2D20?logo=laravel&logoColor=white)](https://laravel.com/)
 [![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?logo=php&logoColor=white)](https://www.php.net/)
@@ -190,7 +190,7 @@ For Gmail SMTP, use a Google App Password rather than your normal account passwo
 
 ## Author
 
-**Wisdom Ogheneobrozie**
+**Oghenemaro Wisdom Ogheneobrozie**
 PHP / Laravel Developer · Delta State, Nigeria
 
 - GitHub: [github.com/Starkices](https://github.com/Starkices)
