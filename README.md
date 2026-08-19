@@ -11,7 +11,7 @@
 **Live:** [.....](#) &nbsp;·&nbsp; **Repo:** [github.com/Starkices/portfolio](https://github.com/Starkices/portfolio)
 
 <!-- Add a real screenshot before publishing — docs/screenshot.png, ~1280px wide, homepage above the fold -->
-![Portfolio screenshot](/screenshot.png)
+![Portfolio screenshot](public/media/screenshot.png)
 
 ### Contents
 
